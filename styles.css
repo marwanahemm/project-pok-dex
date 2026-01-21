@@ -1,0 +1,149 @@
+/* ========================================
+   SECTION HAUT - Lumières
+   ======================================== */
+   .pokedex-top {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 15px;
+    align-items: center;
+    padding-left: 5px;
+}
+
+.light {
+    border-radius: 50%;
+    border: 3px solid;
+    box-shadow: inset 0 -3px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Lumière bleue avec cercle blanc interne */
+.light.blue {
+    width: 55px;
+    height: 55px;
+    background: var();
+    position: relative;
+}
+
+.light.blue::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 25%;
+    height: 25%;
+    background: var();
+}
+
+/* Petites lumières */
+.light.red {
+width: 15px;
+height: 15px;
+background: var();
+}
+
+.light.yellow {
+ width: 15px;
+ height: 15px;
+ background: var();   
+}
+
+.light.green {
+width: 15px;
+height: 15px;
+background: var(); 
+}
+
+/* ========================================
+   ÉCRAN PRINCIPAL
+   ======================================== */
+.screen {
+    background: var(--screen-border);
+    border: 4px solid var(--black);
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 12px;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Barre de navigation */
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.nav-btn {
+    background: var();
+    color: var();
+    border: 2px solid var();
+    padding: 6px, 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.nav-btn:hover {
+    background: #424242;
+    transform: translateY(-1px);
+}
+
+.nav-btn:active {
+    transform: translateY(0);
+}
+
+#counter {
+    color: var(--black);
+    font-weight: bold;
+    font-size: 13px;
+}
+
+/* Deux petits points rouges au-dessus de l'écran */
+.screen::before {
+    content: '';
+    position: absolute;
+    top: 108px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background: var(--button-red);
+    border-radius: 50%;
+    border: 1px solid var(--black);
+    box-shadow: 15px 0 0 var(--button-red), 15px 0 0 1px var(--black);
+}
+
+/* Zone d'affichage du Pokémon - écran gris */
+.pokemon-display {
+    background: var(--screen-bg);
+    border: 3px solid var(--screen-inner);
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 10px;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+#pokemon-image {
+    max-width: 160px;
+    max-height: 160px;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
