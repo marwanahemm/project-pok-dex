@@ -195,3 +195,25 @@ background: var();
     0 8px 0 var()
     0 12px 0 var() ;
 }
+
+/* Zone d'affichage du Pokémon - écran gris */
+.pokemon-display {
+    background: var(--screen-bg);
+    border: 3px solid var(--screen-inner);
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 10px;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+#pokemon-image {
+    max-width: 160px;
+    max-height: 160px;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    animation: fadeIn 0.4s ease-in-out;
+}

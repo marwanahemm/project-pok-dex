@@ -71,3 +71,49 @@ pokemon.alt = pokemon.name.fr;
     const talents = pokemon.talents.map(t => t.name).join(', ');
     pokemonTalents.textContent = talents;
 }
+
+// ========================================
+// AFFICHAGE DES TYPES
+// ========================================
+
+function displayTypes(types) {
+    // Vide le conteneur
+    pokemonTypes.innerText;
+
+    types.array.forEach(element => {
+        const badge = document.createElement('span');
+        badge.className = 'type-badge';
+        badge.style.background = getTypeColor(type.name);
+
+        pokemonTypes.appendChild(badge);
+    });
+}
+
+// ========================================
+// COULEURS DES TYPES
+// ========================================
+
+function getTypeColor(typeName) {
+    const colors = {
+        'Plante': '#78c850',
+        'Feu': '#f08030',
+        'Eau': '#6890f0',
+        'Insecte': '#a8b820',
+        'Normal': '#a8a878',
+        'Poison': '#a040a0',
+        'Électrik': '#f8d030',
+        'Sol': '#e0c068',
+        'Fée': '#ee99ac',
+        'Combat': '#c03028',
+        'Psy': '#f85888',
+        'Roche': '#b8a038',
+        'Spectre': '#705898',
+        'Glace': '#98d8d8',
+        'Dragon': '#7038f8',
+        'Ténèbres': '#705848',
+        'Acier': '#b8b8d0',
+        'Vol': '#a890f0'
+    };
+    
+    return colors[typeName] || '#777';
+}
