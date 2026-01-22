@@ -180,3 +180,18 @@ background: var();
     border-radius: 50%;
     border: 2px solid var(--black);
 }
+
+/* Lignes de haut-parleur à droite */
+.screen::after {
+    content: "";
+    position: absolute;
+    bottom: 125px;
+    right: 25px;
+    width: 30px;
+    height: 2px;
+    background: var();
+    box-shadow:
+    0 4px 0 var()
+    0 8px 0 var()
+    0 12px 0 var() ;
+}
