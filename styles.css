@@ -1,4 +1,34 @@
 /* ========================================
+   VARIABLES CSS - Configuration du design
+   ======================================== */
+:root {
+    /* Couleurs principales du Pokédex */
+    --pokedex-red: #c7352f;
+    --pokedex-border: #8b2020;
+    --pokedex-light-red: #d94c44;
+    
+    /* Couleurs des lumières */
+    --light-blue: #4fc3f7;
+    --light-red: #f44336;
+    --light-yellow: #ffeb3b;
+    --light-green: #4caf50;
+    
+    /* Écran */
+    --screen-bg: #5a5a5a;
+    --screen-border: #e8e8e8;
+    --screen-inner: #3d3d3d;
+    
+    /* Boutons et contrôles */
+    --button-red: #d32f2f;
+    --button-gray: #616161;
+    --button-cyan: #00bcd4;
+    --green-screen: #66bb6a;
+    
+    /* Neutrals */
+    --white: #ffffff;
+    --black: #000000;
+}
+/* ========================================
    SECTION HAUT - Lumières
    ======================================== */
    .pokedex-top {
@@ -217,3 +247,81 @@ background: var();
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
     animation: fadeIn 0.4s ease-in-out;
 }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Infos du Pokémon sous l'écran */
+.pokemon-info {
+    text-align: left;
+    color: var(--black);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#pokemon-name {
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#pokemon-number {
+    font-size: 13px;
+    opacity: 0.7;
+}
+
+/* ========================================
+   ÉCRAN D'INFORMATIONS
+   ======================================== */
+   .info-screen {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: var(--white);
+   }
+
+   .info-section {
+    margin-bottom: 8px;
+    line-height: 1.4;
+   }
+
+   .info-section:last-child {
+    margin-bottom: 0;
+   }
+
+   .info-section strong {
+    display: inline-block;
+    min-height: 60px;
+   }
+
+   /* Types de pokemon */
+   #pokemon-types {
+    display: inline-flex;
+    gap: 5px;
+    flex-wrap: wrap;
+   }
+
+   .type-badge {
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: inline-block;
+   }
+
+  #pokemon-talents {
+    display: inline;
+  } 
+  
