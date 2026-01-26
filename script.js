@@ -117,3 +117,37 @@ function getTypeColor(typeName) {
     
     return colors[typeName] || '#777';
 }
+
+// ========================================
+// NAVIGATION
+// ========================================
+
+function nextPokemon() {
+    if (currentIndex < allPokemon.length - 1) {
+        displayPokemon(currentIndex + 1);
+    } else {
+        displayPokemon(0);
+    }
+}
+
+function previousPokemon() {
+    if (currentIndex > 0) {
+        displayPokemon(currentIndex - 1);
+    } else {
+        displayPokemon(allPokemon.length - 1);
+    }
+}
+
+// ========================================
+// ÉVÉNEMENTS
+// ========================================
+
+// Boutons navigation
+nextBtn.addEventListener('click', nextPokemon);
+prevBtn.addEventListener('click', previousPokemon);
+
+// Clavier
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowRight') nextPokemon();
+    if (event.key === 'ArrowLeft') previousPokemon();
+});
