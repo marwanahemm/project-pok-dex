@@ -151,3 +151,23 @@ document.addEventListener('keydown', (event) => {
     if (event.key === 'ArrowRight') nextPokemon();
     if (event.key === 'ArrowLeft') previousPokemon();
 });
+
+// Dpad
+document.querySelector('.dpad-btn.right').addEventListener('click', nextPokemon);
+document.querySelector('.dpad-btn.left').addEventListener('click', previousPokemon);
+document.querySelector('.dpad-btn.up').addEventListener('click', () =>{
+    // Saute de 10 pokémon
+    const newIndex = Math.min(allPokemon.length -1, currentIndex -10);
+    displayPokemon(newIndex);
+});
+document.querySelector('.dpad-btn.up').addEventListener('click', () =>{
+    // Saute de 10 pokémon
+    const newIndex = Math.min(allPokemon.length -1, currentIndex +10);
+    displayPokemon(newIndex);
+});
+
+// ========================================
+// DÉMARRAGE
+// ========================================
+
+loadPokemon();
