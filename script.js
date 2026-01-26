@@ -1,5 +1,5 @@
 // ========================================
-// VARIABLES GLOBALES// VARIABLES GLOBALES
+// VARIABLES GLOBALES
 // ========================================
 
 let allPokemon = [];
@@ -32,7 +32,7 @@ async function loadPokemon() {
         
     } catch (error) {
         console.error('Erreur:', error);
-        pokemonName.textContent = 'Erreur';
+        pokemonName.textContent = 'Erreur de chargement';
     }
 }
 
@@ -44,11 +44,11 @@ function displayPokemon(index) {
     const pokemon = allPokemon[index];
     currentIndex = index;
 
-// Image
-pokemonImage.src = pokemon.sprites.regular;
-pokemonImage.alt = pokemon.name.fr;
+    // Image
+    pokemonImage.src = pokemon.sprites.regular;
+    pokemonImage.alt = pokemon.name.fr;
 
- // Nom
+    // Nom
     pokemonName.textContent = pokemon.name.fr;
     
     // Numéro
@@ -81,12 +81,13 @@ function displayTypes(types) {
     pokemonTypes.innerHTML = '';
 
     types.forEach(type => {
-    const badge = document.createElement('span');
-    badge.className = 'type-badge';
-    badge.textContent = type.name; // Ajouter le texte !
-    badge.style.background = getTypeColor(type.name);
-    pokemonTypes.appendChild(badge);
-});
+        const badge = document.createElement('span');
+        badge.className = 'type-badge';
+        badge.textContent = type.name;
+        badge.style.background = getTypeColor(type.name);
+
+        pokemonTypes.appendChild(badge);
+    });
 }
 
 // ========================================
@@ -155,12 +156,15 @@ document.addEventListener('keydown', (event) => {
 // Dpad
 document.querySelector('.dpad-btn.right').addEventListener('click', nextPokemon);
 document.querySelector('.dpad-btn.left').addEventListener('click', previousPokemon);
-document.querySelector('.dpad-btn.up').addEventListener('click', () =>{
-    // Saute de 10 pokémon
-    const newIndex = Math.min(allPokemon.length -1, currentIndex -10);
+
+document.querySelector('.dpad-btn.up').addEventListener('click', () => {
+    // Recule de 10 pokémon
+    const newIndex = Math.max(0, currentIndex - 10);
     displayPokemon(newIndex);
 });
+
 document.querySelector('.dpad-btn.down').addEventListener('click', () => {
+    // Avance de 10 pokémon
     const newIndex = Math.min(allPokemon.length - 1, currentIndex + 10);
     displayPokemon(newIndex);
 });
