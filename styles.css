@@ -30,9 +30,56 @@
 }
 
 /* ========================================
+   BASE - Configuration de la page
+   ======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+}
+
+/* ========================================
+   POKÉDEX - Structure principale
+   ======================================== */
+.pokedex {
+    width: 340px;
+    background: var(--pokedex-red);
+    border-radius: 25px 25px 55px 25px;
+    padding: 15px;
+    /* Bordure externe noire */
+    border: 5px solid var(--black);
+    /* Ombre pour l'effet 3D */
+    box-shadow: 
+        0 0 0 3px var(--pokedex-border),
+        0 20px 50px rgba(0, 0, 0, 0.6);
+    position: relative;
+}
+
+/* Ligne de séparation horizontale décorative */
+.pokedex::before {
+    content: '';
+    position: absolute;
+    top: 90px;
+    left: 15px;
+    right: 15px;
+    height: 2px;
+    background: var(--pokedex-border);
+}
+
+/* ========================================
    SECTION HAUT - Lumières
    ======================================== */
-   .pokedex-top {
+.pokedex-top {
     display: flex;
     gap: 8px;
     margin-bottom: 15px;
@@ -42,46 +89,48 @@
 
 .light {
     border-radius: 50%;
-    border: 3px solid;
+    border: 3px solid var(--black);
     box-shadow: inset 0 -3px 6px rgba(0, 0, 0, 0.4);
 }
 
-/* Lumière bleue avec cercle blanc interne */
+/* Grosse lumière bleue avec cercle blanc interne */
 .light.blue {
     width: 55px;
     height: 55px;
-    background: var();
+    background: var(--light-blue);
     position: relative;
 }
 
 .light.blue::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 25%;
-    height: 25%;
-    background: var();
+    width: 25px;
+    height: 25px;
+    background: var(--white);
+    border-radius: 50%;
+    border: 2px solid var(--black);
 }
 
 /* Petites lumières */
 .light.red {
-width: 15px;
-height: 15px;
-background: var();
+    width: 15px;
+    height: 15px;
+    background: var(--light-red);
 }
 
 .light.yellow {
- width: 15px;
- height: 15px;
- background: var();   
+    width: 15px;
+    height: 15px;
+    background: var(--light-yellow);
 }
 
 .light.green {
-width: 15px;
-height: 15px;
-background: var(); 
+    width: 15px;
+    height: 15px;
+    background: var(--light-green);
 }
 
 /* ========================================
@@ -105,10 +154,10 @@ background: var();
 }
 
 .nav-btn {
-    background: var();
-    color: var();
-    border: 2px solid var();
-    padding: 6px, 12px;
+    background: var(--button-gray);
+    color: var(--white);
+    border: 2px solid var(--black);
+    padding: 6px 12px;
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
@@ -214,119 +263,66 @@ background: var();
 
 /* Lignes de haut-parleur à droite */
 .screen::after {
-    content: "";
+    content: '';
     position: absolute;
     bottom: 125px;
     right: 25px;
     width: 30px;
     height: 2px;
-    background: var();
-    box-shadow:
-    0 4px 0 var()
-    0 8px 0 var()
-    0 12px 0 var() ;
-}
-
-/* Zone d'affichage du Pokémon - écran gris */
-.pokemon-display {
-    background: var(--screen-bg);
-    border: 3px solid var(--screen-inner);
-    border-radius: 6px;
-    padding: 15px;
-    margin-bottom: 10px;
-    min-height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-#pokemon-image {
-    max-width: 160px;
-    max-height: 160px;
-    image-rendering: pixelated;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-    animation: fadeIn 0.4s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-/* Infos du Pokémon sous l'écran */
-.pokemon-info {
-    text-align: left;
-    color: var(--black);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#pokemon-name {
-    font-size: 16px;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-#pokemon-number {
-    font-size: 13px;
-    opacity: 0.7;
+    background: var(--black);
+    box-shadow: 
+        0 4px 0 var(--black),
+        0 8px 0 var(--black),
+        0 12px 0 var(--black);
 }
 
 /* ========================================
    ÉCRAN D'INFORMATIONS
    ======================================== */
-   .info-screen {
+.info-screen {
     background: rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     padding: 12px;
     margin-bottom: 12px;
     font-size: 13px;
     color: var(--white);
-   }
+}
 
-   .info-section {
+.info-section {
     margin-bottom: 8px;
     line-height: 1.4;
-   }
+}
 
-   .info-section:last-child {
+.info-section:last-child {
     margin-bottom: 0;
-   }
+}
 
-   .info-section strong {
+.info-section strong {
     display: inline-block;
-    min-height: 60px;
-   }
+    min-width: 60px;
+}
 
-   /* Types de pokemon */
-   #pokemon-types {
+/* Types du Pokémon */
+#pokemon-types {
     display: inline-flex;
     gap: 5px;
     flex-wrap: wrap;
-   }
+}
 
-   .type-badge {
+.type-badge {
     padding: 3px 8px;
     border-radius: 10px;
     font-size: 11px;
     font-weight: bold;
     text-transform: uppercase;
     display: inline-block;
-   }
+}
 
-  #pokemon-talents {
+#pokemon-talents {
     display: inline;
-  } 
+}
 
-  /* ========================================
+/* ========================================
    CONTRÔLES DU BAS
    ======================================== */
 .controls {
@@ -334,17 +330,21 @@ background: var();
     justify-content: space-between;
     align-items: center;
     gap: 10px;
-
 }
 
-/* Hauts parleurs */
+/* Cercle gris (haut-parleur) */
 .speaker {
-    width: 35%;
+    width: 35px;
     height: 35px;
     background: var(--button-gray);
-    display: none;
+    border-radius: 50%;
     border: 3px solid var(--black);
     box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+/* On remplace les lignes par un cercle */
+.speaker-line {
+    display: none;
 }
 
 /* Deux fentes horizontales */
@@ -354,22 +354,22 @@ background: var();
     gap: 6px;
 }
 
-.buttons ::before, 
-.buttons ::after {
+.buttons::before,
+.buttons::after {
     content: '';
     width: 50px;
     height: 4px;
     background: var(--button-red);
-    border: 2 px solid var(--black);
+    border: 2px solid var(--black);
     border-radius: 2px;
 }
 
-.buttons ::after {
+.buttons::after {
     background: var(--button-cyan);
 }
 
 /* On cache les vrais boutons, on utilise les pseudo-éléments */
-.contol-btn {
+.control-btn {
     display: none;
 }
 
@@ -418,4 +418,60 @@ background: var();
     height: 20px;
     top: 50%;
     transform: translateY(-50%);
+}
+
+.dpad-btn.up {
+    top: 0;
+    border-radius: 3px 3px 0 0;
+}
+
+.dpad-btn.down {
+    bottom: 0;
+    border-radius: 0 0 3px 3px;
+}
+
+.dpad-btn.left {
+    left: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.dpad-btn.right {
+    right: 0;
+    border-radius: 0 3px 3px 0;
+}
+
+.dpad-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background: var(--button-gray);
+    border: 2px solid var(--black);
+    border-radius: 2px;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 450px) {
+    .pokedex {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    #pokemon-image {
+        max-width: 140px;
+        max-height: 140px;
+    }
+
+    .controls {
+        gap: 8px;
+    }
+
+    .green-screen {
+        width: 60px;
+        height: 35px;
+    }
 }

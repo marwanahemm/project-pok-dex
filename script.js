@@ -15,8 +15,8 @@ const pokemonWeight = document.getElementById('pokemon-weight');
 const pokemonTalents = document.getElementById('pokemon-talents');
 const counter = document.getElementById('counter');
 
-const prevbtn = document.getElementById('prev-btn');
-const nextbtn = document.getElementById('next-btn');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
 
 // ========================================
 // CHARGEMENT DES POKÉMON
@@ -46,7 +46,7 @@ function displayPokemon(index) {
 
 // Image
 pokemonImage.src = pokemon.sprites.regular;
-pokemon.alt = pokemon.name.fr;
+pokemonImage.alt = pokemon.name.fr;
 
  // Nom
     pokemonName.textContent = pokemon.name.fr;
@@ -78,15 +78,15 @@ pokemon.alt = pokemon.name.fr;
 
 function displayTypes(types) {
     // Vide le conteneur
-    pokemonTypes.innerText;
+    pokemonTypes.innerHTML = '';
 
-    types.array.forEach(element => {
-        const badge = document.createElement('span');
-        badge.className = 'type-badge';
-        badge.style.background = getTypeColor(type.name);
-
-        pokemonTypes.appendChild(badge);
-    });
+    types.forEach(type => {
+    const badge = document.createElement('span');
+    badge.className = 'type-badge';
+    badge.textContent = type.name; // Ajouter le texte !
+    badge.style.background = getTypeColor(type.name);
+    pokemonTypes.appendChild(badge);
+});
 }
 
 // ========================================
@@ -160,9 +160,8 @@ document.querySelector('.dpad-btn.up').addEventListener('click', () =>{
     const newIndex = Math.min(allPokemon.length -1, currentIndex -10);
     displayPokemon(newIndex);
 });
-document.querySelector('.dpad-btn.up').addEventListener('click', () =>{
-    // Saute de 10 pokémon
-    const newIndex = Math.min(allPokemon.length -1, currentIndex +10);
+document.querySelector('.dpad-btn.down').addEventListener('click', () => {
+    const newIndex = Math.min(allPokemon.length - 1, currentIndex + 10);
     displayPokemon(newIndex);
 });
 
