@@ -1,480 +1,695 @@
 /* ========================================
-   VARIABLES CSS - Configuration du design
+   RESET & BASE
    ======================================== */
-:root {
-    /* Couleurs principales du Pokédex */
-    --pokedex-red: #c7352f;
-    --pokedex-border: #8b2020;
-    --pokedex-light-red: #d94c44;
-    
-    /* Couleurs des lumières */
-    --light-blue: #4fc3f7;
-    --light-red: #f44336;
-    --light-yellow: #ffeb3b;
-    --light-green: #4caf50;
-    
-    /* Écran */
-    --screen-bg: #5a5a5a;
-    --screen-border: #e8e8e8;
-    --screen-inner: #3d3d3d;
-    
-    /* Boutons et contrôles */
-    --button-red: #d32f2f;
-    --button-gray: #616161;
-    --button-cyan: #00bcd4;
-    --green-screen: #66bb6a;
-    
-    /* Neutrals */
-    --white: #ffffff;
-    --black: #000000;
-}
-
-/* ========================================
-   BASE - Configuration de la page
-   ======================================== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+input  { font-family: inherit; }
 
 body {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     min-height: 100vh;
-    font-family: 'Arial', sans-serif;
-    padding: 20px;
-}
-
-/* ========================================
-   POKÉDEX - Structure principale
-   ======================================== */
-.pokedex {
-    width: 340px;
-    background: var(--pokedex-red);
-    border-radius: 25px 25px 55px 25px;
-    padding: 15px;
-    /* Bordure externe noire */
-    border: 5px solid var(--black);
-    /* Ombre pour l'effet 3D */
-    box-shadow: 
-        0 0 0 3px var(--pokedex-border),
-        0 20px 50px rgba(0, 0, 0, 0.6);
-    position: relative;
-}
-
-/* Ligne de séparation horizontale décorative */
-.pokedex::before {
-    content: '';
-    position: absolute;
-    top: 90px;
-    left: 15px;
-    right: 15px;
-    height: 2px;
-    background: var(--pokedex-border);
-}
-
-/* ========================================
-   SECTION HAUT - Lumières
-   ======================================== */
-.pokedex-top {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 15px;
-    align-items: center;
-    padding-left: 5px;
-}
-
-.light {
-    border-radius: 50%;
-    border: 3px solid var(--black);
-    box-shadow: inset 0 -3px 6px rgba(0, 0, 0, 0.4);
-}
-
-/* Grosse lumière bleue avec cercle blanc interne */
-.light.blue {
-    width: 55px;
-    height: 55px;
-    background: var(--light-blue);
-    position: relative;
-}
-
-.light.blue::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 25px;
-    height: 25px;
-    background: var(--white);
-    border-radius: 50%;
-    border: 2px solid var(--black);
-}
-
-/* Petites lumières */
-.light.red {
-    width: 15px;
-    height: 15px;
-    background: var(--light-red);
-}
-
-.light.yellow {
-    width: 15px;
-    height: 15px;
-    background: var(--light-yellow);
-}
-
-.light.green {
-    width: 15px;
-    height: 15px;
-    background: var(--light-green);
-}
-
-/* ========================================
-   ÉCRAN PRINCIPAL
-   ======================================== */
-.screen {
-    background: var(--screen-border);
-    border: 4px solid var(--black);
-    border-radius: 8px;
-    padding: 10px;
-    margin-bottom: 12px;
-    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
-    position: relative;
-}
-
-/* Barre de navigation */
-.navigation {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.nav-btn {
-    background: var(--button-gray);
-    color: var(--white);
-    border: 2px solid var(--black);
-    padding: 6px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
-    transition: all 0.2s;
-}
-
-.nav-btn:hover {
-    background: #424242;
-    transform: translateY(-1px);
-}
-
-.nav-btn:active {
-    transform: translateY(0);
-}
-
-#counter {
-    color: var(--black);
-    font-weight: bold;
-    font-size: 13px;
-}
-
-/* Deux petits points rouges au-dessus de l'écran */
-.screen::before {
-    content: '';
-    position: absolute;
-    top: 108px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 8px;
-    height: 8px;
-    background: var(--button-red);
-    border-radius: 50%;
-    border: 1px solid var(--black);
-    box-shadow: 15px 0 0 var(--button-red), 15px 0 0 1px var(--black);
-}
-
-/* Zone d'affichage du Pokémon - écran gris */
-.pokemon-display {
-    background: var(--screen-bg);
-    border: 3px solid var(--screen-inner);
-    border-radius: 6px;
-    padding: 15px;
-    margin-bottom: 10px;
-    min-height: 200px;
+    background: radial-gradient(ellipse at 60% 30%, #1a2340 0%, #0d1117 70%);
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 30px 16px;
+}
+
+/* ========================================
+   POKEDEX — COQUE PRINCIPALE
+   ======================================== */
+.device {
     position: relative;
+    width: 340px;
 }
 
-#pokemon-image {
-    max-width: 160px;
-    max-height: 160px;
-    image-rendering: pixelated;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-    animation: fadeIn 0.4s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-/* Infos du Pokémon sous l'écran */
-.pokemon-info {
-    text-align: left;
-    color: var(--black);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#pokemon-name {
-    font-size: 16px;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-#pokemon-number {
-    font-size: 13px;
-    opacity: 0.7;
-}
-
-/* Petit point rouge et lignes à droite de l'écran */
-.pokemon-display::after {
-    content: '';
+/* Bouton vert bord droit */
+.side-button {
     position: absolute;
-    bottom: 10px;
-    left: 10px;
-    width: 12px;
-    height: 12px;
-    background: var(--button-red);
-    border-radius: 50%;
-    border: 2px solid var(--black);
+    right: -10px;
+    top: 80px;
+    width: 14px;
+    height: 36px;
+    border-radius: 0 6px 6px 0;
+    background: linear-gradient(180deg, #22c55e 0%, #16a34a 100%);
+    border: 2px solid rgba(0,0,0,0.5);
+    box-shadow: 2px 0 6px rgba(0,0,0,0.4);
 }
 
-/* Lignes de haut-parleur à droite */
-.screen::after {
-    content: '';
-    position: absolute;
-    bottom: 125px;
-    right: 25px;
-    width: 30px;
-    height: 2px;
-    background: var(--black);
-    box-shadow: 
-        0 4px 0 var(--black),
-        0 8px 0 var(--black),
-        0 12px 0 var(--black);
+.device-body {
+    background: linear-gradient(145deg, #3a3f52 0%, #252930 50%, #1e2028 100%);
+    border-radius: 18px 18px 22px 22px;
+    border: 3px solid #1a1c23;
+    box-shadow:
+        0 0 0 1px rgba(255,255,255,.06) inset,
+        0 2px 0 rgba(255,255,255,.08) inset,
+        0 30px 80px rgba(0,0,0,.7),
+        0 10px 30px rgba(0,0,0,.5);
+    overflow: hidden;
 }
 
 /* ========================================
-   ÉCRAN D'INFORMATIONS
+   BARRE SUPÉRIEURE
    ======================================== */
-.info-screen {
-    background: rgba(0, 0, 0, 0.2);
+.device-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px 8px;
+    background: rgba(0,0,0,.25);
+    border-bottom: 1px solid rgba(255,255,255,.05);
+}
+
+.indicators {
+    display: flex;
+    gap: 7px;
+    align-items: center;
+}
+
+.ind {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(0,0,0,.4);
+}
+
+.ind.green {
+    background: #22c55e;
+    box-shadow: 0 0 6px #22c55e, 0 0 12px rgba(34,197,94,.4);
+    animation: pulse-green 2.5s ease-in-out infinite;
+}
+.ind.red {
+    background: #ef4444;
+    box-shadow: 0 0 4px rgba(239,68,68,.5);
+}
+
+@keyframes pulse-green {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: .5; }
+}
+
+.topbar-icon-btn {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 8px;
-    padding: 12px;
-    margin-bottom: 12px;
-    font-size: 13px;
-    color: var(--white);
+    color: rgba(255,255,255,.5);
+    transition: color .15s, background .15s;
 }
-
-.info-section {
-    margin-bottom: 8px;
-    line-height: 1.4;
-}
-
-.info-section:last-child {
-    margin-bottom: 0;
-}
-
-.info-section strong {
-    display: inline-block;
-    min-width: 60px;
-}
-
-/* Types du Pokémon */
-#pokemon-types {
-    display: inline-flex;
-    gap: 5px;
-    flex-wrap: wrap;
-}
-
-.type-badge {
-    padding: 3px 8px;
-    border-radius: 10px;
-    font-size: 11px;
-    font-weight: bold;
-    text-transform: uppercase;
-    display: inline-block;
-    color: var(--white);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-#pokemon-talents {
-    display: inline;
+.topbar-icon-btn svg { width: 16px; height: 16px; }
+.topbar-icon-btn:hover {
+    color: #fff;
+    background: rgba(255,255,255,.1);
 }
 
 /* ========================================
-   CONTRÔLES DU BAS
+   ÉCRAN
    ======================================== */
-.controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
+.screen-section {
+    padding: 10px 12px;
+    background: #1e2028;
 }
 
-/* Cercle gris (haut-parleur) */
-.speaker {
-    width: 35px;
-    height: 35px;
-    background: var(--button-gray);
-    border-radius: 50%;
-    border: 3px solid var(--black);
-    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.4);
+.screen-bezel {
+    background: #0a0c12;
+    border-radius: 10px;
+    border: 2px solid #111318;
+    box-shadow:
+        inset 0 2px 12px rgba(0,0,0,.8),
+        inset 0 0 0 1px rgba(255,255,255,.03);
+    overflow: hidden;
+    height: 220px;
 }
 
-/* On remplace les lignes par un cercle */
-.speaker-line {
-    display: none;
+.screen-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
-/* Deux fentes horizontales */
-.buttons {
+/* ========================================
+   VUES DE L'ÉCRAN
+   ======================================== */
+.view {
+    position: absolute;
+    inset: 0;
+    padding: 10px 12px;
     display: flex;
     flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease;
+}
+.view.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* --- Vue principale --- */
+.view-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.poke-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(255,255,255,.35);
+    letter-spacing: 1px;
+}
+
+.counter {
+    font-size: 11px;
+    color: rgba(255,255,255,.25);
+    font-weight: 600;
+}
+
+.sprite-area {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.poke-sprite {
+    width: 130px;
+    height: 130px;
+    object-fit: contain;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 4px 16px rgba(255,255,255,.1));
+    animation: spriteIn .3s ease;
+}
+
+@keyframes spriteIn {
+    from { opacity: 0; transform: scale(.85) translateY(6px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.view-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding-bottom: 4px;
+}
+
+.poke-name {
+    font-size: 16px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: .3px;
+}
+
+.poke-types {
+    display: flex;
     gap: 6px;
 }
 
-.buttons::before,
-.buttons::after {
-    content: '';
-    width: 50px;
+/* --- Vue détails --- */
+.detail-top {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+.detail-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(255,255,255,.3);
+    letter-spacing: 1px;
+}
+.detail-name {
+    font-size: 15px;
+    font-weight: 800;
+    color: #fff;
+}
+
+.detail-meta {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+.meta-card {
+    flex: 1;
+    background: rgba(255,255,255,.06);
+    border-radius: 7px;
+    padding: 5px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.meta-lbl {
+    font-size: 9px;
+    font-weight: 700;
+    color: rgba(255,255,255,.35);
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+.meta-val {
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.detail-block {
+    margin-bottom: 6px;
+}
+.block-title {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    color: rgba(255,255,255,.3);
+    margin-bottom: 5px;
+}
+
+.talent-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+.talent-chip {
+    background: rgba(255,255,255,.1);
+    color: rgba(255,255,255,.8);
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,.12);
+}
+.talent-chip.tc {
+    border-style: dashed;
+    color: rgba(255,255,255,.4);
+}
+
+/* Barres de statistiques */
+.stat-bars { display: flex; flex-direction: column; gap: 4px; }
+
+.stat-row {
+    display: grid;
+    grid-template-columns: 54px 28px 1fr;
+    align-items: center;
+    gap: 6px;
+}
+.stat-lbl {
+    font-size: 9px;
+    font-weight: 600;
+    color: rgba(255,255,255,.35);
+    text-align: right;
+}
+.stat-num {
+    font-size: 10px;
+    font-weight: 700;
+    color: rgba(255,255,255,.7);
+    text-align: right;
+}
+.stat-track {
+    height: 5px;
+    background: rgba(255,255,255,.08);
+    border-radius: 3px;
+    overflow: hidden;
+}
+.stat-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width .5s cubic-bezier(.25,.46,.45,.94);
+}
+
+/* ========================================
+   SÉPARATEUR + HAUT-PARLEUR
+   ======================================== */
+.divider {
+    height: 22px;
+    background: linear-gradient(180deg, #1a1c22 0%, #23262f 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid rgba(0,0,0,.4);
+    border-bottom: 1px solid rgba(0,0,0,.3);
+}
+
+.speaker-dots {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+.speaker-dots span {
+    width: 4px;
     height: 4px;
-    background: var(--button-red);
-    border: 2px solid var(--black);
+    border-radius: 50%;
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(0,0,0,.3);
+}
+
+/* ========================================
+   ZONE DE CONTRÔLE — ORANGE POKÉBALL
+   ======================================== */
+.controls-section {
+    position: relative;
+    height: 220px;
+    background: linear-gradient(160deg, #e8631a 0%, #d04f10 50%, #b84010 100%);
+    overflow: hidden;
+    /* Reflet subtil sur le haut */
+    box-shadow: inset 0 2px 0 rgba(255,255,255,.15);
+}
+
+/* Grand cercle Pokéball */
+.pokeball-ring {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 10px solid rgba(0,0,0,.35);
+    left: 50%;
+    top: -60px;
+    transform: translateX(-50%);
+    pointer-events: none;
+    /* Léger reflet interne */
+    box-shadow: inset 0 4px 20px rgba(255,255,255,.1), 0 0 40px rgba(0,0,0,.3);
+}
+
+/* Bande horizontale de la Pokéball */
+.pokeball-stripe {
+    position: absolute;
+    left: 0; right: 0;
+    top: 96px;
+    height: 10px;
+    background: rgba(0,0,0,.4);
+    pointer-events: none;
+    box-shadow: 0 1px 0 rgba(255,255,255,.08);
+}
+
+/* Bouton central blanc */
+.pokeball-center-btn {
+    position: absolute;
+    top: 91px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 5px solid rgba(0,0,0,.4);
+    background: radial-gradient(circle at 35% 30%, #ffffff 0%, #d4d4d4 60%, #b8b8b8 100%);
+    z-index: 10;
+    box-shadow:
+        inset 0 2px 8px rgba(255,255,255,.6),
+        inset 0 -2px 6px rgba(0,0,0,.2),
+        0 3px 10px rgba(0,0,0,.4);
+    transition: transform .15s, box-shadow .15s;
+}
+.pokeball-center-btn:active {
+    transform: translateX(-50%) scale(.92);
+    box-shadow:
+        inset 0 3px 10px rgba(0,0,0,.3),
+        0 1px 4px rgba(0,0,0,.4);
+}
+
+/* Boutons de navigation (flèches) */
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,.7);
+    background: rgba(0,0,0,.2);
+    border: 1.5px solid rgba(0,0,0,.3);
+    transition: background .15s, color .15s, transform .15s;
+    z-index: 10;
+}
+.nav-arrow svg { width: 22px; height: 22px; }
+.nav-arrow:hover { background: rgba(0,0,0,.35); color: #fff; }
+.nav-arrow:active { transform: translateY(-50%) scale(.9); }
+
+.nav-left  { left: 16px; }
+.nav-right { right: 16px; }
+
+/* Bouton Shiny */
+.shiny-btn {
+    position: absolute;
+    bottom: 12px;
+    right: 16px;
+    font-size: 18px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(0,0,0,.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid rgba(0,0,0,.3);
+    transition: background .15s, transform .15s;
+    opacity: .6;
+}
+.shiny-btn:hover { background: rgba(0,0,0,.35); opacity: 1; }
+.shiny-btn.active { opacity: 1; background: rgba(255,220,50,.25); border-color: rgba(255,220,50,.5); }
+
+/* ========================================
+   BARRE BASSE DU POKÉDEX
+   ======================================== */
+.device-bottombar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 14px;
+    background: #1a1c22;
+    border-top: 2px solid rgba(0,0,0,.5);
+}
+
+.slot {
+    width: 28px;
+    height: 8px;
+    background: #111318;
+    border-radius: 3px;
+    border: 1.5px solid rgba(0,0,0,.6);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,.5);
+}
+.slot-center {
+    width: 16px;
+    height: 6px;
+    background: #111318;
     border-radius: 2px;
+    border: 1px solid rgba(0,0,0,.5);
 }
 
-.buttons::after {
-    background: var(--button-cyan);
+/* ========================================
+   TYPE BADGES
+   ======================================== */
+.type-badge {
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0,0,0,.3);
+    letter-spacing: .3px;
 }
 
-/* On cache les vrais boutons, on utilise les pseudo-éléments */
-.control-btn {
-    display: none;
+/* ========================================
+   OVERLAY DE RECHERCHE
+   ======================================== */
+.search-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px;
+    gap: 0;
 }
 
-/* Écran vert rectangulaire */
-.green-screen {
-    width: 70px;
+.search-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.65);
+    backdrop-filter: blur(6px);
+    z-index: -1;
+    animation: fadeIn .2s ease;
+}
+
+.search-box {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    display: flex;
+    align-items: center;
+    background: #1e2130;
+    border-radius: 14px;
+    border: 1.5px solid rgba(255,255,255,.1);
+    box-shadow: 0 20px 60px rgba(0,0,0,.5);
+    z-index: 1;
+    overflow: hidden;
+}
+
+.search-ico {
+    position: absolute;
+    left: 14px;
+    width: 18px;
+    height: 18px;
+    color: rgba(255,255,255,.35);
+    pointer-events: none;
+}
+
+#search-input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    padding: 16px 16px 16px 44px;
+    font-size: 16px;
+    color: #fff;
+}
+#search-input::placeholder { color: rgba(255,255,255,.3); }
+
+.search-close-btn {
+    padding: 0 14px;
+    font-size: 14px;
+    color: rgba(255,255,255,.4);
+    height: 100%;
+    transition: color .15s;
+}
+.search-close-btn:hover { color: #fff; }
+
+.search-results {
+    width: 100%;
+    max-width: 380px;
+    max-height: 340px;
+    overflow-y: auto;
+    background: #1a1d2a;
+    border-radius: 0 0 14px 14px;
+    border: 1.5px solid rgba(255,255,255,.08);
+    border-top: none;
+    z-index: 1;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,.1) transparent;
+}
+
+.result-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: background .15s;
+    border-bottom: 1px solid rgba(255,255,255,.04);
+}
+.result-item:last-child { border-bottom: none; }
+.result-item:hover { background: rgba(255,255,255,.06); }
+
+.result-img {
+    width: 40px;
     height: 40px;
-    background: var(--green-screen);
-    border: 3px solid var(--black);
-    border-radius: 6px;
-    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.3);
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+.result-num {
+    font-size: 11px;
+    color: rgba(255,255,255,.3);
+    font-weight: 600;
+    width: 32px;
+    flex-shrink: 0;
+}
+.result-name {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+}
+.result-types {
+    display: flex;
+    gap: 4px;
 }
 
-/* D-pad (croix directionnelle) */
-.dpad {
+.no-results {
+    padding: 20px;
+    text-align: center;
+    color: rgba(255,255,255,.3);
+    font-size: 14px;
+}
+
+/* ========================================
+   CHARGEMENT
+   ======================================== */
+.loading-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 500;
+    background: #0d1117;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    color: rgba(255,255,255,.4);
+    font-size: 14px;
+}
+
+/* Pokéball spinner */
+.pb-spinner {
     position: relative;
     width: 60px;
     height: 60px;
+    animation: spin 1s linear infinite;
 }
+@keyframes spin { to { transform: rotate(360deg); } }
 
-.dpad-btn {
+.pb-top {
+    width: 60px; height: 30px;
+    background: #e53e3e;
+    border-radius: 30px 30px 0 0;
+    border: 3px solid #1a1a1a;
+    border-bottom: none;
+}
+.pb-bottom {
+    width: 60px; height: 30px;
+    background: #f0f0f0;
+    border-radius: 0 0 30px 30px;
+    border: 3px solid #1a1a1a;
+    border-top: none;
+}
+.pb-stripe {
     position: absolute;
-    background: var(--button-gray);
-    border: 2px solid var(--black);
-    color: transparent;
-    cursor: pointer;
-    transition: all 0.1s;
-}
-
-.dpad-btn:active {
-    background: #424242;
-}
-
-/* Forme de la croix */
-.dpad-btn.up,
-.dpad-btn.down {
-    width: 20px;
-    height: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.dpad-btn.left,
-.dpad-btn.right {
-    width: 24px;
-    height: 20px;
-    top: 50%;
+    top: 50%; left: 0; right: 0;
+    height: 6px;
+    background: #1a1a1a;
     transform: translateY(-50%);
 }
-
-.dpad-btn.up {
-    top: 0;
-    border-radius: 3px 3px 0 0;
-}
-
-.dpad-btn.down {
-    bottom: 0;
-    border-radius: 0 0 3px 3px;
-}
-
-.dpad-btn.left {
-    left: 0;
-    border-radius: 3px 0 0 3px;
-}
-
-.dpad-btn.right {
-    right: 0;
-    border-radius: 0 3px 3px 0;
-}
-
-.dpad-center {
+.pb-btn {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    width: 20px;
-    height: 20px;
-    background: var(--button-gray);
-    border: 2px solid var(--black);
-    border-radius: 2px;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid #1a1a1a;
+    z-index: 2;
 }
+
+/* ========================================
+   UTILITAIRE
+   ======================================== */
+.hidden { display: none !important; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 /* ========================================
    RESPONSIVE
    ======================================== */
-@media (max-width: 450px) {
-    .pokedex {
-        width: 100%;
-        max-width: 320px;
-    }
-
-    #pokemon-image {
-        max-width: 140px;
-        max-height: 140px;
-    }
-
-    .controls {
-        gap: 8px;
-    }
-
-    .green-screen {
-        width: 60px;
-        height: 35px;
-    }
+@media (max-width: 400px) {
+    body { padding: 16px 8px; }
+    .device { width: 300px; }
+    .pokeball-ring { width: 260px; height: 260px; }
+    .screen-bezel { height: 190px; }
+    .poke-sprite { width: 110px; height: 110px; }
+    .controls-section { height: 200px; }
+    .pokeball-stripe { top: 86px; }
+    .pokeball-center-btn { top: 81px; }
 }

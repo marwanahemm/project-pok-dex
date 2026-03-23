@@ -1,71 +1,156 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Pokédex</title>
-        <link rel="stylesheet" href="styles.css">
-    </head>
-    <body>
-        <div class="pokedex">
-            <!-- Section supérieure : lumières -->
-            <div class="pokedex-top">
-                <div class="light blue"></div>
-                <div class="light red"></div>
-                <div class="light yellow"></div>
-                <div class="light green"></div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Overlay de chargement -->
+    <div id="loading" class="loading-screen">
+        <div class="pb-spinner">
+            <div class="pb-top"></div>
+            <div class="pb-stripe"></div>
+            <div class="pb-bottom"></div>
+            <div class="pb-btn"></div>
+        </div>
+        <p>Chargement…</p>
+    </div>
+
+    <!-- Overlay de recherche -->
+    <div id="search-overlay" class="search-overlay hidden">
+        <div class="search-box">
+            <svg class="search-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input type="text" id="search-input" placeholder="Nom ou numéro…" autocomplete="off" spellcheck="false">
+            <button id="search-close" class="search-close-btn">✕</button>
+        </div>
+        <div id="search-results" class="search-results"></div>
+        <div class="search-backdrop" id="search-backdrop"></div>
+    </div>
+
+    <!-- Appareil Pokédex -->
+    <div class="device">
+
+        <!-- Corps du pokédex -->
+        <div class="device-body">
+
+            <!-- Barre supérieure -->
+            <div class="device-topbar">
+                <div class="indicators">
+                    <div class="ind green" title="Actif"></div>
+                    <div class="ind red"></div>
+                </div>
+                <button id="search-btn" class="topbar-icon-btn" title="Rechercher">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                </button>
             </div>
 
-            <!-- Écran principal -->
-            <div class="screen">
-                <div class="navigation">
-                    <button id="prev-btn" class="nav-btn">◀</button>
-                    <span id="counter">1 / 151</span>
-                    <button id="next-btn" class="nav-btn">▶</button>
-                </div>
+            <!-- Écran -->
+            <div class="screen-section">
+                <div class="screen-bezel">
+                    <div class="screen-inner">
 
-                <div class="pokemon-display">
-                    <img id="pokemon-image" src="" alt="Pokémon">
-                </div>
+                        <!-- Vue Sprite (principale) -->
+                        <div id="view-main" class="view active">
+                            <div class="view-header">
+                                <span id="poke-num" class="poke-num">#001</span>
+                                <span id="counter" class="counter">1 / 151</span>
+                            </div>
+                            <div class="sprite-area">
+                                <img id="poke-sprite" class="poke-sprite" src="" alt="Pokémon">
+                            </div>
+                            <div class="view-footer">
+                                <h2 id="poke-name" class="poke-name">Chargement…</h2>
+                                <div id="poke-types" class="poke-types"></div>
+                            </div>
+                        </div>
 
-                <div class="pokemon-info">
-                    <span id="pokemon-name">Chargement...</span>
-                    <span id="pokemon-number">#001</span>
+                        <!-- Vue Détails -->
+                        <div id="view-detail" class="view">
+                            <div class="detail-top">
+                                <span class="detail-num" id="detail-num">#001</span>
+                                <span class="detail-name" id="detail-name">—</span>
+                            </div>
+                            <div class="detail-meta">
+                                <div class="meta-card">
+                                    <span class="meta-lbl">Taille</span>
+                                    <span id="detail-height" class="meta-val">—</span>
+                                </div>
+                                <div class="meta-card">
+                                    <span class="meta-lbl">Poids</span>
+                                    <span id="detail-weight" class="meta-val">—</span>
+                                </div>
+                            </div>
+                            <div class="detail-block">
+                                <div class="block-title">Talents</div>
+                                <div id="detail-talents" class="talent-chips"></div>
+                            </div>
+                            <div class="detail-block">
+                                <div class="block-title">Statistiques</div>
+                                <div id="detail-stats" class="stat-bars"></div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
 
-            <!-- Écran d'infos -->
-            <div class="info-screen">
-                <div class="info-section">
-                    <strong>Type :</strong>
-                    <span id="pokemon-types"></span>
-                </div>
-                <div class="info-section">
-                    <strong>Taille :</strong> <span id="pokemon-height">-</span>
-                </div>
-                <div class="info-section">
-                    <strong>Poids :</strong> <span id="pokemon-weight">-</span>
-                </div>
-                <div class="info-section">
-                    <strong>Talents :</strong>
-                    <span id="pokemon-talents">-</span>
+            <!-- Haut-parleur -->
+            <div class="divider">
+                <div class="speaker-dots">
+                    <span></span><span></span><span></span><span></span><span></span>
                 </div>
             </div>
 
-            <!-- Contrôles -->
-            <div class="controls">
-                <div class="speaker"></div>
-                <div class="dpad">
-                    <button class="dpad-btn up"></button>
-                    <button class="dpad-btn down"></button>
-                    <button class="dpad-btn left"></button>
-                    <button class="dpad-btn right"></button>
-                    <div class="dpad-center"></div>
-                </div>
-                <div class="green-screen"></div>
+            <!-- Zone de contrôle Orange -->
+            <div class="controls-section">
+
+                <!-- Design -->
+                <div class="pokeball-ring"></div>
+                <div class="pokeball-stripe"></div>
+
+                <!-- Navigation gauche -->
+                <button id="prev-btn" class="nav-arrow nav-left" title="Précédent">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                        <polyline points="15 18 9 12 15 6"/>
+                    </svg>
+                </button>
+
+                <!-- Bouton central -->
+                <button id="toggle-btn" class="pokeball-center-btn" title="Afficher les détails"></button>
+
+                <!-- Navigation droite -->
+                <button id="next-btn" class="nav-arrow nav-right" title="Suivant">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                        <polyline points="9 18 15 12 9 6"/>
+                    </svg>
+                </button>
+
+                <!-- Shiny toggle -->
+                <button id="shiny-btn" class="shiny-btn" title="Mode Shiny">✨</button>
+
             </div>
+
+            <!-- Barre basse du pokédex -->
+            <div class="device-bottombar">
+                <div class="slot"></div>
+                <div class="slot-center"></div>
+                <div class="slot"></div>
+            </div>
+
         </div>
 
-        <script src="script.js"></script>
-    </body>
+        <!-- Bouton vert sur le côté droit -->
+        <div class="side-button green-btn"></div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
